@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href='{% url "homepage" %}'>Главная</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="navbar-brand" href='{% url "about_the_company" %}'>О компании</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </li>
+            <li class="nav-item active">
+                <a class="navbar-brand" href="">Актуальные загрузки</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </li>
+            <li class="nav-item active">
+                <a class="navbar-brand" href="">Электронная очередь</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </li>
+            <li class="nav-item active">
+                <a class="navbar-brand" href='{% url "contacts" %}'>Контакты</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </li>
+        </ul>
+    </div>
+</nav>
+    {% if user.is_authenticated %}
+    <h4 align="right">Пользователь: {{ user.get_username }}</h4>
+    <h4 align="right"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></h4>
+
+    {% else %}
+    <h4 align="right"><a href="{% url 'login'%}?next={{request.path}}">Войти</a></h4>
+
+    <h4 align="right"><a href="{% url 'register'%}?next={{request.path}}">Регистрация</a></h4>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-8">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% block page_content %}
+
+<h1><em>О компании</em></h1>
+<p><h5>ООО «Илмакс»</h5> Это один из ключевых производителей сухих строительных смесей Республики Беларусь.
+По объему продаж входит в тройку крупнейших производителей Республики Беларусь.
+Наша история – наш опыт
+Предприятие было создано в 1992 году, а с 1997 года компания запустила собственное производство сухих строительных
+смесей.
+<p><h5>Производственный комплекс в г. Жодино совершенствовался с каждым годом, и сегодня он представляет собой
+    производство,
+    соответствующее европейским нормам, где используется современное оборудование и программное обеспечение.
+    Процесс производства и фасовки полностью автоматизирован.</h5>
+
+<p><h5>В 2015 году было завершено строительство собственного логистического центра в г.п. Колодощи.</h5>
+
+<p><h5>Прочное партнерство – оправданный подход</h5>
+С самого начала основания приоритетом для компании стало установление прочных партнерских отношений с клиентами и
+развитие долгосрочного взаимовыгодного сотрудничества.
+
+Этот подход оправдался: на протяжении многих лет Партнерами ООО «Илмакс» являются крупные оптовые компании,
+строительные организации, розница и DIY.
+
+Сегодня сухие строительные смеси ilmax представлены во всех регионах Беларуси, Активно развивается и экспорт:
+продукция поставляется в Россию, Азербайджан, ЕС.
+
+<p><h5>Широкий ассортимент</h5>
+Илмакс - динамично развивающаяся и гибкая компания, идущая в ногу со временем и учитывающая изменяющиеся потребности
+рынка.
+
+Ассортимент компании включает материалы для строительства любого масштаба. Технический центр постоянно работает над
+совершенствованием существующих составов (с учетом мнений потребителей) и разрабатывает новые.
+Сегодня одним из направлений развития является разработка специализированных составов, предвосхищая потребности
+современного строительства.
+
+<p><h5> Стабильное качество</h5>
+Среди основных целей деятельности компании Илмакс - постоянное улучшение качества продукции.
+Передовая в Беларуси система подготовки и обработки сырья и автоматизированное производство;
+две лаборатории, в том числе аккредитованная, и многоуровневый контроль при производстве,
+все это обеспечивает стабильно высокое качество сухих строительных смесей.
+
+{% endblock %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>

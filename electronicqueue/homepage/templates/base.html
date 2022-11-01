@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<div
+
+        style="background-image: url('static/img/1625313553_30-phonoteka-org-p-oboi-na-rabochii-stol-logistika-oboi-krasi-32.jpg');
+height:100vh"
+>
+
+
+    <nav class="nav flex-column">
+
+
+        {% if user.is_authenticated %}
+        <h4 align="right">Пользователь: {{ user.get_username }}</h4>
+        <h4 align="right"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></h4>
+
+        {% else %}
+        <h4 align="right"><a href="{% url 'login'%}?next={{request.path}}">Войти</a></h4>
+        <h4 align="right"><a href="{% url 'register'%}?next={{request.path}}">Регистрация</a></h4>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+
+        <a class="nav-link" href='{% url "homepage" %}'><h3>Главная</h3></a>
+
+
+        <a class="nav-link" href='{% url "about_the_company" %}'><h3>О компании</h3></a>
+
+
+        <a class="nav-link" href=''><h3>Актуальные загрузки</h3></a>
+
+
+        <a class="nav-link" href=''><h3>Электронная очередь</h3></a>
+
+
+        <a class="nav-link" href='{% url "contacts" %}'><h3>Контакты</h3></a>
+
+    </nav>
+
+</div>
+
+
+{% block page_content %}
+{% endblock %}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
